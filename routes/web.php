@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +35,14 @@ Route::get("/nav", function(Request $request){
    return redirect('/');
 });
 
-Route::prefix("/posts")->name("posts.")->group(function(){
-    Route::get("",[PostController::class,'index'])->name("index");
+Route::prefix("/")->name("posts.")->group(function(){
+    Route::get("",[HomeController::class,'index'])->name("index");
  });
+
+Route::prefix("/users")->group(function(){
+    Route::get("",[UserController::class,"index"]);
+    Route::get("/add",[UserController::class,'add']);
+    Route::post("/add",[UserController::class,'postAdd']);
+    Route::get("/edit/{id}",[UserController::class,'getEdit']);
+    Route::post("/edit/{id}",[UserController::class,'postEdit']);
+});
