@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +30,10 @@ Route::prefix('admin')->group(function(){
     });
 });
 
-Route::get("/nav", function(){
+Route::get("/nav", function(Request $request){
    return redirect('/');
 });
+
+Route::prefix("/posts")->name("posts.")->group(function(){
+    Route::get("",[PostController::class,'index'])->name("index");
+ });
