@@ -17,4 +17,15 @@ class Users extends Model
     public function addUser($data){
         DB::insert("Insert into users(email,fullName) values (?,?)",$data);
     }
+    public function learnQueryBuilder(){
+        //Lấy tất cả bản ghi
+        $data = DB::table("users")
+        ->select('email','fullName')
+        ->where("id",2)
+        ->get();
+        //Get first
+        dd($data);
+        $data_first = DB::table("users")->first();
+
+    }
 }

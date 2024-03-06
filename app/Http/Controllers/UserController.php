@@ -15,6 +15,8 @@ class UserController extends Controller
     public function Index(){
         $title ="Danh sách người dùng";
         $usersList = $this->users->getUsers();
+        $data = $this->users->learnQueryBuilder();
+        dd($data);
         return view("clients.users.list",compact("title","usersList"));
     }
 
@@ -46,7 +48,7 @@ class UserController extends Controller
         return view("clients.users.edit",compact("title"));
     }
 
-    public function postAdd(Request $request){
+    public function postEdit(Request $request){
         $request->validate([
             'fullName'=>"required|min:5",
             "email"=>"required|email"
@@ -63,4 +65,6 @@ class UserController extends Controller
         $this->users->addUser($data);
         return redirect("/users")->with("msg","Tạo mới người dùng thành công");
     }
+
+
 }
