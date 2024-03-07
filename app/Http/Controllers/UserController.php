@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Users;
+use App\Models\Phone;
 class UserController extends Controller
 {
     //
     private $users;
+
     public function __construct(){
         $this->users = new Users();
     }
@@ -66,5 +68,9 @@ class UserController extends Controller
         return redirect("/users")->with("msg","Tạo mới người dùng thành công");
     }
 
+    public function relationOneToOne(){
+        $user = Users::find(4)->phone->phone;
+        dd($user);
+    }
 
 }

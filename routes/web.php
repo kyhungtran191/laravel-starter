@@ -41,6 +41,7 @@ Route::prefix("/users")->group(function(){
     Route::post("/add",[UserController::class,'postAdd']);
     Route::get("/edit/{id}",[UserController::class,'getEdit']);
     Route::post("/edit/{id}",[UserController::class,'postEdit']);
+    Route::get("/learn-relation",[UserController::class,"relationOneToOne"]);
 });
 
 Route::prefix("products")->name("products.")->group(function(){
@@ -50,4 +51,9 @@ Route::prefix("products")->name("products.")->group(function(){
     Route::get("/edit/{id}",[ProductsController::class,"getEdit"])->name("getEdit");
     Route::post("/edit/{id}",[ProductsController::class,"postEdit"])->name("postEdit");
     Route::get("/delete/{id}",[ProductsController::class,"deleteProduct"])->name("deleteProduct");
+
+});
+
+Route::prefix("posts")->group(function(){
+    Route::get("/",[PostController::class,"index"]);
 });

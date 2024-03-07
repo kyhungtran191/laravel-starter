@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Phone;
 class Users extends Model
 {
     use HasFactory;
+    public function phone(){
+        return $this->hasOne(Phone::class,'user_id','id');
+    }
+
     public function getUsers(){
         $users = DB::select("select * from users");
         return $users;
